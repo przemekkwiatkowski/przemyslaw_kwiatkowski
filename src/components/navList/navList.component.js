@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
+import { ROUTES } from '../../app.constants';
+
 const NavList = ({ isOpen }) => {
   return (
     <div
@@ -11,7 +13,7 @@ const NavList = ({ isOpen }) => {
     >
       <ul className="navbar-nav">
         <li className="nav-item active">
-          <Link to="/" className="nav-link">
+          <Link to={ROUTES.home} className="nav-link">
             List View
             <span className="sr-only">(current)</span>
           </Link>
