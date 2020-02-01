@@ -4,7 +4,7 @@ import DataTable from '../../components/dataTable/dataTable.component';
 import Search from '../../components/search/search.component';
 import Pagination from '../../components/pagination/pagination.component';
 import PageTitle from '../../components/pageTitle/pageTitle.component';
-import { url, getData, setPageQuery } from '../../utils/api';
+import { url, getData } from '../../utils/api';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -14,6 +14,7 @@ const ListView = () => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,10 +22,10 @@ const ListView = () => {
       setIsLoading(true);
 
       try {
-        const responseQuery = await getData(url.characters, null, setPageQuery(currentPage));
+        const responseQuery = await getData(url.characters, null, currentPage, searchValue);
         const queryData = await responseQuery.json();
 
-        const responseFull = await getData(url.characters);
+        const responseFull = await getData(url.characters, null, null, searchValue);
         const fullData = await responseFull.json();
 
         setData(queryData);
@@ -38,7 +39,7 @@ const ListView = () => {
     };
 
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, searchValue]);
 
   const getLastPage = () => Math.ceil( dataLength / ITEMS_PER_PAGE );
 
@@ -55,9 +56,9 @@ const ListView = () => {
   return (
     <>
       <PageTitle title={'List View'} />
-      <Search />
+      <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       <DataTable data={data} isLoading={isLoading} isError={isError} />
-      {!isError && renderPagination()}
+      {!isError && !searchValue && renderPagination()}
     </>
   );
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Search = () => {
+const Search = ({ searchValue, setSearchValue }) => {
+  const handleChange = (e) => setSearchValue(e.target.value);
+
   return (
     <div className="row">
       <div className="col-sm-6">
@@ -13,6 +15,8 @@ const Search = () => {
             className="form-control"
             id="searchInput"
             placeholder="Search..."
+            value={searchValue}
+            onChange={handleChange}
           />
         </div>
       </div>
