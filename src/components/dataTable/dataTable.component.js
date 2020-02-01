@@ -1,6 +1,37 @@
 import React from 'react';
 
-const DataTable = () => {
+import TableRow from './tableRow/tableRow.component';
+
+const DataTable = ({ data, isLoading, isError }) => {
+  const renderTableBody = () => {
+    if (isError) {
+      return (
+        <tr>
+          <td colSpan="6" className='text-center'>Something went wrong.<br/>Reload the page.</td>
+        </tr>
+      );
+    }
+
+    if (isLoading) {
+      return (
+        <tr>
+          <td colSpan="6" className='text-center'>Loading...</td>
+        </tr>
+      );
+    }
+
+    return (
+      data.map((item, index) => {
+        return (
+          <TableRow
+            key={index}
+            data={{...item}}
+          />
+        );
+      })
+    )
+  };
+
   return (
     <table className="table table-bordered table-hover">
       <thead className="thead-light">
@@ -14,48 +45,7 @@ const DataTable = () => {
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Luke Skywalker</td>
-        <td>Human</td>
-        <td>Male</td>
-        <td>Tatooine</td>
-        <td>
-          <div
-            className="btn-group btn-group-sm"
-            role="group"
-            aria-label="Actions"
-          >
-            <button type="button" className="btn btn-secondary">
-              <i className="fa fa-pencil" aria-hidden="true" /> Edit
-            </button>
-            <button type="button" className="btn btn-danger">
-              <i className="fa fa-trash-o" aria-hidden="true" /> Remove
-            </button>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>R2-D2</td>
-        <td>Droid</td>
-        <td>n/a</td>
-        <td>Naboo</td>
-        <td>
-          <div
-            className="btn-group btn-group-sm"
-            role="group"
-            aria-label="Actions"
-          >
-            <button type="button" className="btn btn-secondary">
-              <i className="fa fa-pencil" aria-hidden="true" /> Edit
-            </button>
-            <button type="button" className="btn btn-danger">
-              <i className="fa fa-trash-o" aria-hidden="true" /> Remove
-            </button>
-          </div>
-        </td>
-      </tr>
+      {renderTableBody()}
       </tbody>
     </table>
   );
