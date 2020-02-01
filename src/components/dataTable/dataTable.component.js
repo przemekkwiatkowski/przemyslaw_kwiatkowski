@@ -3,21 +3,26 @@ import React from 'react';
 import TableRow from './tableRow/tableRow.component';
 
 const DataTable = ({ data, isLoading, isError }) => {
+  const renderTableRow = text => {
+    return (
+      <tr>
+        <td colSpan="6" className='text-center'>{text}</td>
+      </tr>
+    );
+  };
+
   const renderTableBody = () => {
     if (isError) {
-      return (
-        <tr>
-          <td colSpan="6" className='text-center'>Something went wrong.<br/>Reload the page.</td>
-        </tr>
-      );
+      return renderTableRow('Something went wrong. Reload the page.');
     }
 
     if (isLoading) {
-      return (
-        <tr>
-          <td colSpan="6" className='text-center'>Loading...</td>
-        </tr>
-      );
+      return renderTableRow('Loading...');
+
+    }
+
+    if (!data.length) {
+      return renderTableRow('No Results Found');
     }
 
     return (

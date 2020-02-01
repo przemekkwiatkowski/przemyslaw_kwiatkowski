@@ -5,11 +5,11 @@ export const url = {
   species: `${baseUrl}species`,
 };
 
-export const setPageQuery = page => `_page=${page}`;
+export const getData = (url, id = null, page = null, search = null) => {
+  const idQuery = id ? `/${id}` : '';
+  const pageQuery = !id && !search && page ? `?_page=${page}` : '';
+  const searchQuery = !id && !!search ? `?q=${search}` : '';
+  const fetchUrl = `${url}${idQuery}${pageQuery}${searchQuery}`;
 
-export const getData = (url, id = null, query = null) => {
-  const idPath = id ? `/${id}` : '';
-  const queryPath = !id && query ? `?${query}` : '';
-
-  return fetch(`${url}${idPath}${queryPath}`);
+  return fetch(fetchUrl);
 };
