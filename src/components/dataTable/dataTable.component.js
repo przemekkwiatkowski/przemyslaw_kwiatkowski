@@ -45,7 +45,7 @@ const DataTable = ({ data, isLoading, isError }) => {
       </tr>
       </thead>
       <tbody>
-      {renderTableBody()}
+        {renderTableBody()}
       </tbody>
     </table>
   );
