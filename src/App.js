@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import classNames from 'classnames';
 
-import ListView from './list-view/ListView';
+import ListView from './routes/list-view/ListView';
 
 class App extends Component {
   state = {
