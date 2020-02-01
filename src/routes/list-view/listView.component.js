@@ -42,16 +42,22 @@ const ListView = () => {
 
   const getLastPage = () => Math.ceil( dataLength / ITEMS_PER_PAGE );
 
-  return (
-    <>
-      <PageTitle title={'List View'} />
-      <Search />
-      <DataTable data={data} isLoading={isLoading} isError={isError} />
+  const renderPagination = () => {
+    return (
       <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         lastPage={getLastPage()}
       />
+    );
+  };
+
+  return (
+    <>
+      <PageTitle title={'List View'} />
+      <Search />
+      <DataTable data={data} isLoading={isLoading} isError={isError} />
+      {!isError && renderPagination()}
     </>
   );
 }
