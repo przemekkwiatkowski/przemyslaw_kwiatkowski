@@ -49,6 +49,10 @@ const ListView = () => {
   const getLastPage = () => Math.ceil( dataLength / ITEMS_PER_PAGE );
 
   const renderPagination = () => {
+    if (isError || searchValue || dataLength <= ITEMS_PER_PAGE || isLoading) {
+      return null;
+    }
+
     return (
       <Pagination
         currentPage={currentPage}
@@ -70,7 +74,7 @@ const ListView = () => {
       </div>
 
       <DataTable data={data} isLoading={isLoading} isError={isError} />
-      {!isError && !searchValue && dataLength > ITEMS_PER_PAGE && renderPagination()}
+      {renderPagination()}
     </>
   );
 }

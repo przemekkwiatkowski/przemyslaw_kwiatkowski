@@ -5,7 +5,7 @@ import TableRow from './tableRow/tableRow.component';
 const DataTable = ({ data, isLoading, isError }) => {
   const renderTableRow = text => {
     return (
-      <tr>
+      <tr style={{height: "100vh"}}>
         <td colSpan="6" className='text-center'>{text}</td>
       </tr>
     );
