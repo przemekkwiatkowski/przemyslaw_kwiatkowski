@@ -40,7 +40,6 @@ const ListView = () => {
         setIsError(true);
       }
 
-      console.log(data);
       setIsLoading(false);
     };
 

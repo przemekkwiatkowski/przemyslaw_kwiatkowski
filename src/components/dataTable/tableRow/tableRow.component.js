@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { checkResponse, deleteData, url } from '../../../utils/api';
 
 const TableRow = ({ data:{ id, name, species, gender, homeworld }, updateData }) => {
-  const [removeError, setRemoveError] = useState(false);
+  const [removeCharacterError, setRemoveCharacterError] = useState(false);
 
   const handleRemove = async () => {
-    setRemoveError(false);
+    setRemoveCharacterError(false);
 
     try {
       const response = await deleteData(url.characters, id);
@@ -13,9 +13,15 @@ const TableRow = ({ data:{ id, name, species, gender, homeworld }, updateData })
       updateData();
     } catch (error) {
       console.error(error);
-      setRemoveError(true);
+      setRemoveCharacterError(true);
     }
   };
+
+  useEffect(() => {
+    if (removeCharacterError) {
+      alert(`Deleting failed.`)
+    }
+  }, [removeCharacterError]);
 
   return (
     <tr>
