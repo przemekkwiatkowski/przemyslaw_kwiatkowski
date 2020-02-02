@@ -3,8 +3,8 @@ import { Route } from 'react-router-dom';
 
 import { ROUTES } from './app.constants';
 import Navigation from './components/navigation/navigation.component';
-import ListView from './routes/list-view/listView.component';
-import AddCharacter from './routes/add-character/addCharacter.component';
+import ListView from './routes/listView/listView.component';
+import AddCharacter from './routes/addCharacter/addCharacter.component';
 
 class AppComponent extends Component {
   render() {

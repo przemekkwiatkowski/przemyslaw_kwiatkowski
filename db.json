@@ -192,6 +192,20 @@
       "gender": "n/a",
       "homeworld": "Tattooine",
       "id": 22
+    },
+    {
+      "name": "NeChar",
+      "species": "Aleena",
+      "gender": "female",
+      "homeworld": "Tatooine",
+      "id": 23
+    },
+    {
+      "name": "Luke Skajwolek",
+      "species": "Kaleesh",
+      "gender": "male",
+      "homeworld": "",
+      "id": 24
     }
   ]
 }
