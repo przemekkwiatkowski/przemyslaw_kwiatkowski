@@ -3,7 +3,7 @@ import React from 'react';
 import TableRow from './tableRow/tableRow.component';
 
 const DataTable = ({ data, isLoading, isError, updateData }) => {
-  const renderTableRow = text => {
+  const renderAlternativeTableRow = text => {
     return (
       <tr style={{height: "100vh"}}>
         <td colSpan="6" className='text-center'>{text}</td>
@@ -13,16 +13,16 @@ const DataTable = ({ data, isLoading, isError, updateData }) => {
 
   const renderTableBody = () => {
     if (isError) {
-      return renderTableRow('Something went wrong. Reload the page.');
+      return renderAlternativeTableRow('Something went wrong. Reload the page.');
     }
 
     if (isLoading) {
-      return renderTableRow('Loading...');
+      return renderAlternativeTableRow('Loading...');
 
     }
 
     if (!data.length) {
-      return renderTableRow('No Results Found');
+      return renderAlternativeTableRow('No Results Found');
     }
 
     return (

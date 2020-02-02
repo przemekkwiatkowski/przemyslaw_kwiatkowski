@@ -34,6 +34,18 @@ export const deleteData = (url, id) => {
   return fetch(`${url}/${id}`, options);
 };
 
+export const editData = (url, id, data) => {
+  const options = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  };
+
+  return fetch(`${url}/${id}`, options);
+};
+
 export const checkResponse = res => {
   if (res.ok) {
     return;
