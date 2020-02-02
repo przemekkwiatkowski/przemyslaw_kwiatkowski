@@ -45,7 +45,8 @@ const TableRow = ({ data:{ id, name, species, gender, homeworld }, updateData })
           aria-label="Actions"
         >
           <button type="button" className="btn btn-secondary" onClick={handleEdit}>
-            <i className="fa fa-pencil" aria-hidden="true" /> Edit
+            <i className="fa fa-pencil" aria-hidden="true" />
+            Edit
           </button>
           <button type="button" className="btn btn-danger" onClick={handleRemove}>
             <i className="fa fa-trash-o" aria-hidden="true" />

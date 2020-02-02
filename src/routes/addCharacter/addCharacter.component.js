@@ -7,8 +7,8 @@ import { addData, checkResponse, url } from '../../utils/api';
 import { ROUTES } from '../../app.constants';
 
 export const AddCharacter = () => {
-  const history = useHistory();
   const [postError, setPostError] = useState(false);
+  const history = useHistory();
 
   const onSubmit = async data => {
     setPostError(false);

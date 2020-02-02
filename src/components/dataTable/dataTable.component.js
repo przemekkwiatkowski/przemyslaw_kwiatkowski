@@ -38,16 +38,19 @@ const DataTable = ({ data, isLoading, isError, updateData }) => {
     )
   };
 
+  const renderTableHeaders = () => {
+    const headers = ['Id', 'Name', 'Species', 'Gender', 'Homeworld', 'Actions']
+
+    return headers.map((header, index) => {
+      return <th key={index} scope="col">{header}</th>;
+    })
+  };
+
   return (
     <table className="table table-bordered table-hover">
       <thead className="thead-light">
       <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Species</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Homeworld</th>
-        <th scope="col">Actions</th>
+        {renderTableHeaders()}
       </tr>
       </thead>
       <tbody>

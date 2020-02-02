@@ -80,7 +80,7 @@ export const CharacterForm = ({ onSubmit, id = null }) => {
   useEffect(() => {
     setFetchDataError(false);
     setIsFillingData(false);
-    setIsGettingSpecies(false)
+    setIsGettingSpecies(false);
 
     const getSpecies = async () => {
       setIsGettingSpecies(true);
@@ -132,6 +132,141 @@ export const CharacterForm = ({ onSubmit, id = null }) => {
     );
   };
 
+  const renderNameInput = () => {
+    return (
+      <div className="form-group">
+        <label htmlFor="nameInput">
+          Name
+          <span className="text-primary"> *</span>
+        </label>
+        <input
+          type="text"
+          className={`form-control ${nameValidationError ? 'is-invalid' : ''}`}
+          id="nameInput"
+          aria-label="Character name input"
+          placeholder="Name"
+          value={name}
+          onChange={handleNameInputChange}
+          required
+        />
+        {renderErrorMessage()}
+      </div>
+    );
+  };
+
+  const renderSpeciesSelect = () => {
+    return (
+      <div className="form-group">
+        <label htmlFor="selectSpecies">
+          Species
+          <span className="text-primary"> *</span>
+        </label>
+        <select
+          className={`form-control ${speciesValidationError ? 'is-invalid' : ''}`}
+          id="selectSpecies"
+          value={species}
+          onChange={handleSpeciesChange}
+          required
+        >
+          {speciesOptions.map((option, index) => {
+            return (
+              <option
+                key={index}
+                value={option}
+                disabled={!(!!index)}
+              >
+                {option}
+              </option>
+            );
+          })}
+        </select>
+        {renderErrorMessage()}
+      </div>
+    );
+  };
+
+  const renderGenderRadios = () => {
+    return (
+      <fieldset className="form-group">
+        <div className="row">
+          <legend className="col-form-label col-md-4">
+            Gender
+            <span className="text-primary"> *</span>
+          </legend>
+          <div className="col-md-8 mt-2 p-0">
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="genderRadio"
+                id="genderRadio1"
+                value="male"
+                checked={gender === 'male'}
+                onChange={handleGenderChange}
+              />
+              <label className="form-check-label" htmlFor="genderRadio1">
+                Male
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="genderRadio"
+                id="genderRadio2"
+                value="female"
+                checked={gender === 'female'}
+                onChange={handleGenderChange}
+              />
+              <label className="form-check-label" htmlFor="genderRadio2">
+                Female
+              </label>
+            </div>
+            <div className="form-check disabled">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="genderRadio"
+                id="genderRadio3"
+                value="n/a"
+                checked={gender === 'n/a'}
+                onChange={handleGenderChange}
+              />
+              <label className="form-check-label" htmlFor="genderRadio3">
+                n/a
+              </label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    );
+  };
+
+  const renderHomeworldInput = () => {
+    return (
+      <div className="form-group">
+        <label htmlFor="nameInput">Homeworld</label>
+        <input
+          type="text"
+          className="form-control"
+          id="homeworldInput"
+          aria-describedby="Character homeworld input"
+          placeholder="Homeworld"
+          value={homeworld}
+          onChange={handleHomeworldInputChange}
+        />
+      </div>
+    );
+  };
+
+  const renderSubmitButton = () => {
+    return (
+      <button type="submit" className="btn btn-primary" disabled={isSending}>
+        {isSending ? 'Sending...' : 'Submit'}
+      </button>
+    );
+  };
+
   const renderForm = () => {
     if (fetchDataError) {
       return <p>Something went wrong. Reload the page and try again.</p>
@@ -143,120 +278,11 @@ export const CharacterForm = ({ onSubmit, id = null }) => {
 
     return (
       <form onSubmit={submitForm} noValidate>
-        <div className="form-group">
-          <label htmlFor="nameInput">
-            Name
-            <span className="text-primary"> *</span>
-          </label>
-          <input
-            type="text"
-            className={`form-control ${nameValidationError ? 'is-invalid' : ''}`}
-            id="nameInput"
-            aria-label="Character name input"
-            placeholder="Name"
-            value={name}
-            onChange={handleNameInputChange}
-            required
-          />
-          {renderErrorMessage()}
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="selectSpecies">
-            Species
-            <span className="text-primary"> *</span>
-          </label>
-          <select
-            className={`form-control ${speciesValidationError ? 'is-invalid' : ''}`}
-            id="selectSpecies"
-            value={species}
-            onChange={handleSpeciesChange}
-            required
-          >
-            {speciesOptions.map((option, index) => {
-              return (
-                <option
-                  key={index}
-                  value={option}
-                  disabled={!(!!index)}
-                >
-                  {option}
-                </option>
-              );
-            })}
-          </select>
-          {renderErrorMessage()}
-        </div>
-
-        <fieldset className="form-group">
-          <div className="row">
-            <legend className="col-form-label col-md-4">
-              Gender
-              <span className="text-primary"> *</span>
-            </legend>
-            <div className="col-md-8 mt-2 p-0">
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="genderRadio"
-                  id="genderRadio1"
-                  value="male"
-                  checked={gender === 'male'}
-                  onChange={handleGenderChange}
-                />
-                <label className="form-check-label" htmlFor="genderRadio1">
-                  Male
-                </label>
-              </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="genderRadio"
-                  id="genderRadio2"
-                  value="female"
-                  checked={gender === 'female'}
-                  onChange={handleGenderChange}
-                />
-                <label className="form-check-label" htmlFor="genderRadio2">
-                  Female
-                </label>
-              </div>
-              <div className="form-check disabled">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="genderRadio"
-                  id="genderRadio3"
-                  value="n/a"
-                  checked={gender === 'n/a'}
-                  onChange={handleGenderChange}
-                />
-                <label className="form-check-label" htmlFor="genderRadio3">
-                  n/a
-                </label>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-
-        <div className="form-group">
-          <label htmlFor="nameInput">Homeworld</label>
-          <input
-            type="text"
-            className="form-control"
-            id="homeworldInput"
-            aria-describedby="Character homeworld input"
-            placeholder="Homeworld"
-            value={homeworld}
-            onChange={handleHomeworldInputChange}
-          />
-        </div>
-
-        <button type="submit" className="btn btn-primary" disabled={isSending}>
-          {isSending ? 'Sending...' : 'Submit'}
-        </button>
+        {renderNameInput()}
+        {renderSpeciesSelect()}
+        {renderGenderRadios()}
+        {renderHomeworldInput()}
+        {renderSubmitButton()}
       </form>
     );
   };

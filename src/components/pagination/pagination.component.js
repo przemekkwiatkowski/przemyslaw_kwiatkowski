@@ -5,17 +5,17 @@ const Pagination = ({ currentPage, setCurrentPage, lastPage }) => {
   const renderPageNumbers = () => {
     const pages = [];
 
-    for(let i = 1; i <= lastPage; i++) {
+    for(let index = 1; index <= lastPage; index++) {
       pages.push(
         <li
-          key={i}
+          key={index}
           className={classNames('page-item',  {
-            active: i === currentPage,
+            active: index === currentPage,
           })}
         >
-          <button type="button" className="page-link" onClick={() => goToPage(i)}>
-            {i}
-            <span className="sr-only">(current)</span>
+          <button type="button" className="page-link" onClick={() => goToPage(index)}>
+            {index}
+            {index === currentPage && <span className="sr-only">(current)</span>}
           </button>
         </li>
       );
