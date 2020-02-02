@@ -18,6 +18,7 @@ const ListView = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState('');
+  const [forceUpdateData, setForceUpdateData] = useState(false);
   const debouncedSearchValue = useDebounce(searchValue, 200);
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const ListView = () => {
 
     fetchData();
     // eslint-disable-next-line
-  }, [currentPage, debouncedSearchValue]);
+  }, [currentPage, debouncedSearchValue, forceUpdateData]);
 
   const getLastPage = () => Math.ceil( dataLength / ITEMS_PER_PAGE );
 
@@ -62,6 +63,8 @@ const ListView = () => {
     );
   };
 
+  const updateData = () => setForceUpdateData(!forceUpdateData);
+
   return (
     <>
       <PageTitle title={'List View'} />
@@ -73,7 +76,7 @@ const ListView = () => {
           <LinkButton text="Add New" link={ROUTES.addCharacter} />
       </div>
 
-      <DataTable data={data} isLoading={isLoading} isError={isError} />
+      <DataTable data={data} updateData={updateData} isLoading={isLoading} isError={isError} />
       {renderPagination()}
     </>
   );

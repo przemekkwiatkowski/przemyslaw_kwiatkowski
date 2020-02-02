@@ -26,6 +26,14 @@ export const addData = (url, data) => {
   return fetch(`${url}`, options);
 };
 
+export const deleteData = (url, id) => {
+  const options = {
+    method: 'DELETE',
+  };
+
+  return fetch(`${url}/${id}`, options);
+};
+
 export const checkResponse = res => {
   if (res.ok) {
     return;

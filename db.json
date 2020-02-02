@@ -103,13 +103,6 @@
       "homeworld": "Corellia"
     },
     {
-      "id": 10,
-      "name": "Yoda",
-      "species": "Yoda's species",
-      "gender": "male",
-      "homeworld": ""
-    },
-    {
       "id": 11,
       "name": "Sheev Palpatine",
       "species": "Human",
@@ -129,13 +122,6 @@
       "species": "Human",
       "gender": "male",
       "homeworld": "Socorro"
-    },
-    {
-      "id": 14,
-      "name": "Qui-Gon Jinn",
-      "species": "Human",
-      "gender": "male",
-      "homeworld": ""
     },
     {
       "id": 15,
@@ -166,20 +152,6 @@
       "homeworld": ""
     },
     {
-      "id": 19,
-      "name": "BB8",
-      "species": "Droid",
-      "gender": "n/a",
-      "homeworld": ""
-    },
-    {
-      "name": "NewBJ",
-      "species": "Pau'an",
-      "gender": "male",
-      "homeworld": "",
-      "id": 20
-    },
-    {
       "name": "Artur",
       "species": "Sullustan",
       "gender": "male",
@@ -187,39 +159,11 @@
       "id": 21
     },
     {
-      "name": "B4-droid",
-      "species": "Droid",
-      "gender": "n/a",
-      "homeworld": "Tattooine",
-      "id": 22
-    },
-    {
-      "name": "NeChar",
-      "species": "Aleena",
-      "gender": "female",
-      "homeworld": "Tatooine",
+      "name": "s",
+      "species": "Ewok",
+      "gender": "male",
+      "homeworld": "assdasdasd",
       "id": 23
-    },
-    {
-      "name": "Luke Skajwolek",
-      "species": "Kaleesh",
-      "gender": "male",
-      "homeworld": "",
-      "id": 24
-    },
-    {
-      "name": "asdasdasd",
-      "species": "Droid",
-      "gender": "female",
-      "homeworld": "asdasdasdasd",
-      "id": 25
-    },
-    {
-      "name": "DroidD2",
-      "species": "Droid",
-      "gender": "male",
-      "homeworld": "",
-      "id": 26
     }
   ]
 }
