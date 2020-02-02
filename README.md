@@ -20,7 +20,7 @@ npm test:e2e # run the E2E tests
 ## Tasks
 
 ### Refactoring
-Refactor the existing code to extract single-purpose, reusable components. Connect ui to the api served by json-server ([http://localhost:3000/characters](http://localhost:3000/characters)). You can start the api by running `npm run api` command. Documentation for json-server can be found on its [github page](https://github.com/typicode/json-server).
+✅ Refactor the existing code to extract single-purpose, reusable components. Connect ui to the api served by json-server ([http://localhost:3000/characters](http://localhost:3000/characters)). You can start the api by running `npm run api` command. Documentation for json-server can be found on its [github page](https://github.com/typicode/json-server).
 
 ### Pagination
 As a user I want to be able to change currenly visible page of results by using pagination buttons.
