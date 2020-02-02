@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { checkResponse, deleteData, url } from '../../../utils/api';
 
-const TableRow = ({ data:{ id, name, species, gender, homeworld } }) => {
+const TableRow = ({ data:{ id, name, species, gender, homeworld }, updateData }) => {
   const [removeError, setRemoveError] = useState(false);
 
   const handleRemove = async () => {
@@ -10,7 +10,7 @@ const TableRow = ({ data:{ id, name, species, gender, homeworld } }) => {
     try {
       const response = await deleteData(url.characters, id);
       checkResponse(response);
-      //updateData
+      updateData();
     } catch (error) {
       console.error(error);
       setRemoveError(true);

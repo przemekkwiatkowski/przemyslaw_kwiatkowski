@@ -2,7 +2,7 @@ import React from 'react';
 
 import TableRow from './tableRow/tableRow.component';
 
-const DataTable = ({ data, isLoading, isError }) => {
+const DataTable = ({ data, isLoading, isError, updateData }) => {
   const renderTableRow = text => {
     return (
       <tr style={{height: "100vh"}}>
@@ -31,6 +31,7 @@ const DataTable = ({ data, isLoading, isError }) => {
           <TableRow
             key={index}
             data={{...item}}
+            updateData={updateData}
           />
         );
       })
