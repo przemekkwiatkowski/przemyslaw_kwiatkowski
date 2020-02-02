@@ -17,7 +17,7 @@ const ListView = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState('');
   const debouncedSearchValue = useDebounce(searchValue, 200);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       setIsError(false);
@@ -61,7 +61,7 @@ const ListView = () => {
       <PageTitle title={'List View'} />
       <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       <DataTable data={data} isLoading={isLoading} isError={isError} />
-      {!isError && !searchValue && renderPagination()}
+      {!isError && !searchValue && dataLength > ITEMS_PER_PAGE && renderPagination()}
     </>
   );
 }

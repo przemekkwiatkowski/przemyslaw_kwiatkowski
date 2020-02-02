@@ -1,4 +1,6 @@
 import React from 'react';
+import { ROUTES } from '../../app.constants';
+import { Link } from 'react-router-dom';
 
 const Search = ({ searchValue, setSearchValue }) => {
   const handleChange = (e) => setSearchValue(e.target.value);
@@ -21,9 +23,11 @@ const Search = ({ searchValue, setSearchValue }) => {
         </div>
       </div>
       <div className="col-sm-6 text-sm-right">
-        <button type="button" className="btn btn-primary mb-3">
-          Add New
-        </button>
+          <Link to={ROUTES.addCharacter}>
+            <button type="button" className="btn btn-primary mb-3">
+              Add New
+            </button>
+          </Link>
       </div>
     </div>
   );
