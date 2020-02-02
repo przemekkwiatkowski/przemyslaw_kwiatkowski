@@ -47,18 +47,18 @@
       "homeworld": "Tatooine"
     },
     {
-      "id": 2,
       "name": "C-3PO",
       "species": "Droid",
       "gender": "n/a",
-      "homeworld": "Tatooine"
+      "homeworld": "Tatooine",
+      "id": 2
     },
     {
-      "id": 3,
-      "name": "R2-D2",
+      "name": "R2-D23",
       "species": "Droid",
       "gender": "n/a",
-      "homeworld": "Naboo"
+      "homeworld": "Nabooo",
+      "id": 3
     },
     {
       "id": 4,
@@ -82,11 +82,11 @@
       "homeworld": "Stewjon"
     },
     {
-      "id": 7,
       "name": "Anakin Skywalker",
       "species": "Human",
       "gender": "male",
-      "homeworld": "Tatooine"
+      "homeworld": "Tatooine",
+      "id": 7
     },
     {
       "id": 8,
@@ -164,6 +164,13 @@
       "gender": "male",
       "homeworld": "assdasdasd",
       "id": 23
+    },
+    {
+      "name": "Bobba",
+      "species": "Clawdite",
+      "gender": "n/a",
+      "homeworld": "Nomeworld",
+      "id": 24
     }
   ]
 }

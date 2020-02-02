@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { checkResponse, getData, url } from '../../utils/api';
 
-export const CharacterForm = ({ onSubmit }) => {
+export const CharacterForm = ({ onSubmit, id = null }) => {
   const [name, setName] = useState('');
   const [species, setSpecies] = useState('Select species');
   const [gender, setGender] = useState('male');
@@ -13,7 +13,9 @@ export const CharacterForm = ({ onSubmit }) => {
   const [isSending, setIsSending] = useState(false);
   const [submittedWithErrors, setSubmittedWithErrors] = useState(false);
   const [formUpdated, setFormUpdated] = useState(false);
-  const [fetchSpeciesError, setFetchSpeciesError] = useState(false);
+  const [fetchDataError, setFetchDataError] = useState(false);
+  const [isGettingSpecies, setIsGettingSpecies] = useState(false);
+  const [isFillingData, setIsFillingData] = useState(false);
 
   const handleNameInputChange = ({ target:{value} }) => setName(value);
   const handleSpeciesChange = ({ target:{value} })  => setSpecies(value);
@@ -76,9 +78,13 @@ export const CharacterForm = ({ onSubmit }) => {
   }, [name, species, gender, homeworld]);
 
   useEffect(() => {
-    setFetchSpeciesError(false);
+    setFetchDataError(false);
+    setIsFillingData(false);
+    setIsGettingSpecies(false)
 
     const getSpecies = async () => {
+      setIsGettingSpecies(true);
+
       try {
         const response = await getData(url.species);
         checkResponse(response);
@@ -86,12 +92,37 @@ export const CharacterForm = ({ onSubmit }) => {
         setSpeciesOptions(prevState => ([ ...prevState, ...data ]));
       } catch (error) {
         console.error(error);
-        setFetchSpeciesError(true);
+        setFetchDataError(true);
       }
+
+      setIsGettingSpecies(false);
+    };
+
+    const fillCharacterData = async () => {
+      setIsFillingData(true);
+
+      try {
+        const response = await getData(url.characters, id);
+        checkResponse(response);
+        const { name, species, gender, homeworld } = await response.json();
+        setName(name);
+        setSpecies(species);
+        setGender(gender);
+        setHomeworld(homeworld);
+      } catch (error) {
+        console.error(error);
+        setFetchDataError(true);
+      }
+
+      setIsFillingData(false);
     };
 
     getSpecies();
-  }, []);
+
+    if (id) {
+      fillCharacterData();
+    }
+  }, [id]);
 
   const renderErrorMessage = () => {
     return (
@@ -102,8 +133,12 @@ export const CharacterForm = ({ onSubmit }) => {
   };
 
   const renderForm = () => {
-    if (fetchSpeciesError) {
+    if (fetchDataError) {
       return <p>Something went wrong. Reload the page and try again.</p>
+    }
+
+    if (isFillingData || isGettingSpecies) {
+      return <p>Loading...</p>
     }
 
     return (
@@ -134,7 +169,7 @@ export const CharacterForm = ({ onSubmit }) => {
           <select
             className={`form-control ${speciesValidationError ? 'is-invalid' : ''}`}
             id="selectSpecies"
-            defaultValue="Select species"
+            value={species}
             onChange={handleSpeciesChange}
             required
           >
@@ -153,7 +188,7 @@ export const CharacterForm = ({ onSubmit }) => {
           {renderErrorMessage()}
         </div>
 
-        <fieldset className="form-group" onChange={handleGenderChange}>
+        <fieldset className="form-group">
           <div className="row">
             <legend className="col-form-label col-md-4">
               Gender
@@ -161,20 +196,43 @@ export const CharacterForm = ({ onSubmit }) => {
             </legend>
             <div className="col-md-8 mt-2 p-0">
               <div className="form-check">
-                <input className="form-check-input" type="radio" name="genderRadio" id="genderRadio1" value="male"
-                       defaultChecked />
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="genderRadio"
+                  id="genderRadio1"
+                  value="male"
+                  checked={gender === 'male'}
+                  onChange={handleGenderChange}
+                />
                 <label className="form-check-label" htmlFor="genderRadio1">
                   Male
                 </label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="radio" name="genderRadio" id="genderRadio2" value="female" />
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="genderRadio"
+                  id="genderRadio2"
+                  value="female"
+                  checked={gender === 'female'}
+                  onChange={handleGenderChange}
+                />
                 <label className="form-check-label" htmlFor="genderRadio2">
                   Female
                 </label>
               </div>
               <div className="form-check disabled">
-                <input className="form-check-input" type="radio" name="genderRadio" id="genderRadio3" value="n/a" />
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="genderRadio"
+                  id="genderRadio3"
+                  value="n/a"
+                  checked={gender === 'n/a'}
+                  onChange={handleGenderChange}
+                />
                 <label className="form-check-label" htmlFor="genderRadio3">
                   n/a
                 </label>

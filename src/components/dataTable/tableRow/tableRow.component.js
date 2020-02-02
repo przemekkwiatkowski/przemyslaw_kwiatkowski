@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import { checkResponse, deleteData, url } from '../../../utils/api';
+import { ROUTES } from '../../../app.constants';
 
 const TableRow = ({ data:{ id, name, species, gender, homeworld }, updateData }) => {
   const [removeCharacterError, setRemoveCharacterError] = useState(false);
+  const history = useHistory();
 
   const handleRemove = async () => {
     setRemoveCharacterError(false);
@@ -15,6 +19,10 @@ const TableRow = ({ data:{ id, name, species, gender, homeworld }, updateData })
       console.error(error);
       setRemoveCharacterError(true);
     }
+  };
+
+  const handleEdit = () => {
+    history.push(`${ROUTES.editCharacter}/${id}`)
   };
 
   useEffect(() => {
@@ -36,7 +44,7 @@ const TableRow = ({ data:{ id, name, species, gender, homeworld }, updateData })
           role="group"
           aria-label="Actions"
         >
-          <button type="button" className="btn btn-secondary">
+          <button type="button" className="btn btn-secondary" onClick={handleEdit}>
             <i className="fa fa-pencil" aria-hidden="true" /> Edit
           </button>
           <button type="button" className="btn btn-danger" onClick={handleRemove}>
