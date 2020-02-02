@@ -13,3 +13,23 @@ export const getData = (url, id = null, page = null, search = null) => {
 
   return fetch(fetchUrl);
 };
+
+export const addData = (url, data) => {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  };
+
+  return fetch(`${url}`, options);
+};
+
+export const checkResponse = res => {
+  if (res.ok) {
+    return;
+  }
+
+  throw new Error(res.statusText);
+};

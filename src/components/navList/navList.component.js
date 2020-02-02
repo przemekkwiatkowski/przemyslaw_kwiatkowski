@@ -18,6 +18,12 @@ const NavList = ({ isOpen }) => {
             <span className="sr-only">(current)</span>
           </Link>
         </li>
+        <li className="nav-item active">
+          <Link to={ROUTES.addCharacter} className="nav-link">
+            Add Character
+            <span className="sr-only">(current)</span>
+          </Link>
+        </li>
       </ul>
     </div>
   );

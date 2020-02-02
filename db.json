@@ -171,6 +171,55 @@
       "species": "Droid",
       "gender": "n/a",
       "homeworld": ""
+    },
+    {
+      "name": "NewBJ",
+      "species": "Pau'an",
+      "gender": "male",
+      "homeworld": "",
+      "id": 20
+    },
+    {
+      "name": "Artur",
+      "species": "Sullustan",
+      "gender": "male",
+      "homeworld": "Earth",
+      "id": 21
+    },
+    {
+      "name": "B4-droid",
+      "species": "Droid",
+      "gender": "n/a",
+      "homeworld": "Tattooine",
+      "id": 22
+    },
+    {
+      "name": "NeChar",
+      "species": "Aleena",
+      "gender": "female",
+      "homeworld": "Tatooine",
+      "id": 23
+    },
+    {
+      "name": "Luke Skajwolek",
+      "species": "Kaleesh",
+      "gender": "male",
+      "homeworld": "",
+      "id": 24
+    },
+    {
+      "name": "asdasdasd",
+      "species": "Droid",
+      "gender": "female",
+      "homeworld": "asdasdasdasd",
+      "id": 25
+    },
+    {
+      "name": "DroidD2",
+      "species": "Droid",
+      "gender": "male",
+      "homeworld": "",
+      "id": 26
     }
   ]
 }
