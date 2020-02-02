@@ -88,6 +88,14 @@ export const CharacterForm = ({ onSubmit }) => {
     getSpecies();
   }, []);
 
+  const renderErrorMessage = () => {
+    return (
+      <div className="invalid-feedback">
+        This field is required.
+      </div>
+    );
+  };
+
   return (
     <form onSubmit={submitForm} noValidate>
       <div className="form-group">
@@ -98,15 +106,14 @@ export const CharacterForm = ({ onSubmit }) => {
         <input
           type="text"
           className={`form-control ${nameError ? 'is-invalid' : ''}`}
-          id="nameInput" aria-describedby="nameInput"
+          id="nameInput"
+          aria-label="Character name input"
           placeholder="Name"
           value={name}
           onChange={handleNameInputChange}
           required
         />
-        <div className="invalid-feedback">
-          This field is required.
-        </div>
+        {renderErrorMessage()}
       </div>
 
       <div className="form-group">
@@ -133,9 +140,7 @@ export const CharacterForm = ({ onSubmit }) => {
             );
           })}
         </select>
-        <div className="invalid-feedback">
-          This field is required.
-        </div>
+        {renderErrorMessage()}
       </div>
 
       <fieldset className="form-group" onChange={handleGenderChange}>
@@ -173,7 +178,8 @@ export const CharacterForm = ({ onSubmit }) => {
         <input
           type="text"
           className="form-control"
-          id="homeworldInput" aria-describedby="homeworldInput"
+          id="homeworldInput"
+          aria-describedby="Character homeworld input"
           placeholder="Homeworld"
           value={homeworld}
           onChange={handleHomeworldInputChange}
