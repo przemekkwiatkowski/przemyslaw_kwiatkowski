@@ -50,7 +50,7 @@ const ListView = () => {
   const getLastPage = () => Math.ceil( dataLength / ITEMS_PER_PAGE );
 
   const renderPagination = () => {
-    if (isError || searchValue || dataLength <= ITEMS_PER_PAGE || isLoading) {
+    if (isError || debouncedSearchValue || dataLength <= ITEMS_PER_PAGE || isLoading) {
       return null;
     }
 
