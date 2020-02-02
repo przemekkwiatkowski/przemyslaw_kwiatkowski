@@ -25,3 +25,11 @@ export const addData = (url, data) => {
 
   return fetch(`${url}`, options);
 };
+
+export const checkResponse = res => {
+  if (res.ok) {
+    return;
+  }
+
+  throw new Error(res.statusText);
+};

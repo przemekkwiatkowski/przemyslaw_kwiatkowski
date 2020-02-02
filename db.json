@@ -213,6 +213,13 @@
       "gender": "female",
       "homeworld": "asdasdasdasd",
       "id": 25
+    },
+    {
+      "name": "DroidD2",
+      "species": "Droid",
+      "gender": "male",
+      "homeworld": "",
+      "id": 26
     }
   ]
 }
