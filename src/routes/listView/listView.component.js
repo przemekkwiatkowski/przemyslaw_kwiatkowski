@@ -4,8 +4,10 @@ import DataTable from '../../components/dataTable/dataTable.component';
 import Search from '../../components/search/search.component';
 import Pagination from '../../components/pagination/pagination.component';
 import PageTitle from '../../components/pageTitle/pageTitle.component';
-import { url, getData } from '../../utils/api';
+import LinkButton from '../../components/linkButton/LinkButton.component';
 import useDebounce from '../../hooks/useDebounce';
+import { url, getData } from '../../utils/api';
+import { ROUTES } from '../../app.constants';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -59,7 +61,14 @@ const ListView = () => {
   return (
     <>
       <PageTitle title={'List View'} />
-      <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+
+      <div className="row">
+        <div className="col-sm-6">
+          <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+        </div>
+          <LinkButton text="Add New" link={ROUTES.addCharacter} />
+      </div>
+
       <DataTable data={data} isLoading={isLoading} isError={isError} />
       {!isError && !searchValue && dataLength > ITEMS_PER_PAGE && renderPagination()}
     </>
